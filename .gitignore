@@ -1,0 +1,14 @@
+.env
+
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+.idea/
+.vscode/
+
+# Outputs generados por el agente (datos personales reales de LinkedIn).
+# No subir nunca a un repo público; se regeneran en cada ejecución.
+TOP_CANDIDATES_REPORT.md
+candidates_ranked.json
