@@ -89,4 +89,4 @@ linkedin-candidate-agent/
 
 ## Notas de privacidad
 
-Los archivos `TOP_CANDIDATES_REPORT.md` y `candidates_ranked.json` contienen **datos personales reales** scrapeados de LinkedIn (nombres, URLs, experiencia). Están en `.gitignore` deliberadamente para no incluirlos en el repo. Trata estos archivos según GDPR y los Términos de Servicio de LinkedIn.
+Los archivos `TOP_CANDIDATES_REPORT.md` y `candidates_ranked.json` contienen **datos personales reales** scrapeados de LinkedIn (nombres, URLs, experiencia). Están en `.gitignore` deliberadamente para no incluirlos en el repo.
