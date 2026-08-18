@@ -10,22 +10,68 @@ Agente multi-rol con [CrewAI](https://www.crewai.com/) que, dada una **Job Descr
 
 ## Flujo
 
-```mermaid
-flowchart LR
-  jd["Job Description"]
-  t1["1. JD Analyst<br/>extrae requisitos a JSON"]
-  t2["2. Boolean Search<br/>(Apify harvestapi)"]
-  t4["3. Ranker<br/>score 0-100 + razón"]
-  t5["4. Reporter<br/>Markdown final"]
-  out1["candidates_ranked.json"]
-  out2["TOP_CANDIDATES_REPORT.md"]
+Entra una Job Description en texto plano, salen dos ficheros. Entre medias, cuatro
+agentes en cadena: cada uno hace una sola cosa y recibe como entrada lo que produjo
+el anterior.
 
-  jd --> t1 --> t2 --> t4 --> t5
-  t4 --> out1
-  t5 --> out2
+```mermaid
+flowchart TB
+  JD[/"Job Description (texto plano)"/]
+  T1["1 · JD Analyst<br/>lee la oferta"]
+  T2["2 · Boolean Search Expert<br/>traduce a queries y busca"]
+  T3["3 · Ranker<br/>puntúa contra la JD"]
+  T4["4 · Reporter<br/>redacta el informe"]
+  APIFY[["Apify<br/>harvestapi/linkedin-profile-search"]]
+  JSON[("candidates_ranked.json")]
+  MD[("TOP_CANDIDATES_REPORT.md")]
+
+  JD --> T1
+  T1 -- "requisitos en JSON" --> T2
+  T2 <-- "queries · perfiles" --> APIFY
+  T2 -- "perfiles enriquecidos" --> T3
+  T3 -- "candidatos con score" --> T4
+  T3 --> JSON
+  T4 --> MD
+  JD -. "se reinyecta" .-> T3
 ```
 
-Si la búsqueda en Apify falla, una **regla inviolable** corta el flujo y deja `Reporte no generado` en lugar de fabricar candidatos.
+| # | Agente | Recibe | Produce |
+|---|--------|--------|---------|
+| 1 | JD Analyst | la JD en bruto | JSON con `title`, `must_have_skills`, `nice_to_have`, `min_years_experience`, `location`, `other_criteria` |
+| 2 | Boolean Search Expert | ese JSON | búsquedas booleanas ejecutadas contra Apify; devuelve perfiles con `about`, `experience`, `skills`, `education` |
+| 3 | Ranker | los perfiles **y la JD original** | cada candidato con `score` 0-100 y su razonamiento |
+| 4 | Reporter | los candidatos puntuados | Top 10 con enlace y mensaje de outreach de 3-4 líneas |
+
+Dos detalles del diseño que no se ven en el diagrama:
+
+- `memory=False` y `Process.sequential`: ningún agente arrastra contexto más allá de lo
+  que le entrega el anterior. Lo que no esté en ese traspaso, no existe.
+- La JD original se **reinyecta** en el paso 3 en lugar de dejar que el ranking se apoye
+  en el JSON del paso 1. Así se puntúa contra la oferta real y no contra un resumen que
+  ya ha pasado por un LLM.
+
+### Qué pasa cuando Apify falla
+
+Un LLM al que le pides los diez mejores candidatos sin darle datos reales te los
+inventa, y los inventa bien: nombres verosímiles y URLs con forma de
+`linkedin.com/in/<slug>`. El fallo silencioso es el peor resultado posible aquí, porque
+el reporte parece correcto.
+
+Por eso las tareas 2, 3 y 4 llevan una regla explícita que **propaga el error hacia
+abajo** en lugar de rellenar el hueco:
+
+```mermaid
+flowchart LR
+  E["Apify devuelve error<br/>o lista vacía"]
+  T2["Tarea 2<br/>APIFY_SEARCH_FAILED: razón"]
+  T3["Tarea 3<br/>error + reason, sin candidatos"]
+  T4["Tarea 4<br/>Reporte no generado"]
+
+  E --> T2 --> T3 --> T4
+```
+
+El resultado es un fichero que dice por qué no hay reporte y qué revisar, en vez de diez
+perfiles falsos.
 
 ## Stack
 
