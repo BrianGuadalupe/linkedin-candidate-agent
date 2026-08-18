@@ -1,5 +1,4 @@
 crewai
 crewai-tools
 pydantic
-langchain-anthropic
-langchain-google-genai
+python-dotenv

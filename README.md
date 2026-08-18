@@ -1,5 +1,11 @@
 # LinkedIn Candidate Agent
 
+> **Proyecto educativo / demo técnica.** Automatiza la búsqueda de perfiles públicos de
+> LinkedIn a través de un actor de terceros en Apify. El scraping de LinkedIn puede
+> infringir sus Términos de Servicio, y los perfiles obtenidos son **datos personales**
+> sujetos al RGPD. Quien ejecute este código es el único responsable del uso que le dé,
+> de contar con base legal para tratar esos datos y de cumplir la normativa aplicable.
+
 Agente multi-rol con [CrewAI](https://www.crewai.com/) que, dada una **Job Description**, busca candidatos en LinkedIn vía [Apify](https://apify.com/) (`harvestapi/linkedin-profile-search`), los puntúa con un LLM y genera un reporte ejecutivo en Markdown listo para hiring managers.
 
 ## Flujo
@@ -84,9 +90,14 @@ linkedin-candidate-agent/
 ├── requirements.txt
 ├── .env.example            # Plantilla; copiar a .env y rellenar
 ├── .gitignore              # Ignora .env, .venv/ y outputs con datos personales
+├── LICENSE                 # MIT
 └── README.md
 ```
 
 ## Notas de privacidad
 
 Los archivos `TOP_CANDIDATES_REPORT.md` y `candidates_ranked.json` contienen **datos personales reales** scrapeados de LinkedIn (nombres, URLs, experiencia). Están en `.gitignore` deliberadamente para no incluirlos en el repo.
+
+## Licencia
+
+Distribuido bajo licencia [MIT](LICENSE). Se entrega "tal cual", sin garantías.

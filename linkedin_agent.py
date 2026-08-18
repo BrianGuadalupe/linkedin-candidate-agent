@@ -173,31 +173,38 @@ crew = Crew(
 
 # ===================== EJECUCIÓN =====================
 if __name__ == "__main__":
+    # JD de ejemplo (ficticia). Sustitúyela por la oferta que quieras analizar.
     job_description = """
-    Buscamos un Analista de Proyectos Web para unirse al equipo de Business Technology donde definirás y coordinarás la evolución técnica de nuestras plataformas, asegurando que sean escalables para soportar el crecimiento previsto.
+    Buscamos un/a Analista de Proyectos Web para el equipo de Business Technology.
+    Definirás y coordinarás la evolución técnica de nuestras plataformas digitales,
+    asegurando que escalen con el crecimiento del negocio.
 
-Actuarás como el puente vital entre nuestros stakeholders de negocio y los equipos técnicos, traduciendo las estrategias comerciales en realidades técnicas. Tu alcance incluye nuestras plataformas de e-Commerce directo al consumidor (DTC), nuestros portales Mayoristas B2B y nuestros sistemas de Punto de Venta Minorista (POS).
+    Actuarás como puente entre los stakeholders de negocio y los equipos técnicos,
+    traduciendo estrategia comercial en especificaciones implementables. El alcance
+    cubre e-Commerce B2C, portales mayoristas B2B y sistemas de punto de venta (POS).
 
-Te centrarás en refinar los procesos internos, gestionar los requisitos y testear los desarrollos para garantizar que todos los entregables cumplan con los estándares de calidad y se alineen perfectamente con las necesidades del negocio.
+    ## Funciones principales
 
-## Funciones principales.
+    - Gestión del ciclo de vida del proyecto: definir alcance, coordinar tareas de
+      desarrollo y supervisar la implementación técnica.
+    - Traducción de negocio a técnico: recopilar requisitos y convertirlos en
+      especificaciones claras para los equipos de desarrollo.
+    - Gestión de stakeholders: mantener comunicación fluida con equipos internos y
+      garantizar la adopción de nuevos procesos.
+    - Diseño de soluciones y coordinación con proveedores y agencias externas.
+    - Mantenimiento operativo y evolutivos posteriores al lanzamiento.
+    - Quality Assurance: validar que cada entregable resuelve el problema definido.
 
-Gestión del Ciclo de Vida del Proyecto: Definir el alcance de los proyectos, gestionar las tareas de desarrollo y supervisar la implementación técnica de las soluciones. Serás responsable de la planificación, el enfoque técnico y los estándares de calidad del producto final.
-Traducción de Negocio a Técnico: Recopilar requisitos con los stakeholders. Traducir estas necesidades en especificaciones técnicas claras para que los equipos de desarrollo las implementen.
-Gestión de Stakeholders: Mantener canales de comunicación abiertos y fluidos con diversos equipos internos para garantizar que los nuevos procesos se adopten adecuadamente y se alineen con la estrategia de la empresa.
-Diseño de Soluciones y Coordinación de Proveedores: Proponer soluciones técnicas escalables y coordinar con socios/agencias externos para su implementación.
-Mantenimiento Operacional: Supervisarás el mantenimiento operativo y las actualizaciones evolutivas después del lanzamiento.
-Garantía de Calidad (Quality Assurance): Asegurar que todos los entregables funcionen correctamente y resuelvan los problemas comerciales específicos identificados durante la fase de definición del alcance.
+    ## Requisitos
 
-## Requisitos.
-
-Experiencia: Experiencia demostrable en la conexión entre las necesidades del negocio y la ejecución técnica (p. ej., como Analista de software, Product Owner o gestor de Proyecto Técnico).
-Fluidez Técnica: Conocimiento demostrable de tecnologías web (HTML, CSS, JS/React) y conceptos de backend (Java, SQL).
-Habilidades Interpersonales (Soft Skills): Fuerte iniciativa, capacidad de aprendizaje autónomo y una mentalidad colaborativa de trabajo en equipo.
-Idiomas/residencia: Se requiere un nivel profesional de inglés y español y residir en Mallorca.
-Conocimiento de estrategias SEO/GEO.
-Experiencia con sistemas ERP (específicamente SAP) o software de Punto de Venta Minorista (POS).
-Proactividad y con experiencia en proyectos tecnológicos personales paralelos (side-projects).
+    - Experiencia demostrable conectando necesidades de negocio con ejecución técnica
+      (Analista funcional, Product Owner o Technical Project Manager).
+    - Fluidez técnica: tecnologías web (HTML, CSS, JS/React) y conceptos de backend
+      (Java, SQL).
+    - Iniciativa, aprendizaje autónomo y mentalidad colaborativa.
+    - Nivel profesional de inglés y español.
+    - Valorable: estrategias SEO, sistemas ERP (SAP) o software POS, y side-projects
+      técnicos propios.
     """
 
     print(f"🚀 Iniciando agente con {LLM_PROVIDER.upper()}...")
