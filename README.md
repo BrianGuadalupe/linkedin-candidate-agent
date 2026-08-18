@@ -1,6 +1,6 @@
 # LinkedIn Candidate Agent
 
-> **Proyecto educativo / demo técnica.** Automatiza la búsqueda de perfiles públicos de
+> **Demo técnica.** Automatiza la búsqueda de perfiles públicos de
 > LinkedIn a través de un actor de terceros en Apify. El scraping de LinkedIn puede
 > infringir sus Términos de Servicio, y los perfiles obtenidos son **datos personales**
 > sujetos al RGPD. Quien ejecute este código es el único responsable del uso que le dé,
