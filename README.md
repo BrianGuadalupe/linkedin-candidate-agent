@@ -29,10 +29,16 @@ Si la búsqueda en Apify falla, una **regla inviolable** corta el flujo y deja `
 
 ## Stack
 
-- **CrewAI 1.14** + provider Gemini nativo (`crewai.LLM`)
+- **CrewAI** + provider Gemini nativo (`crewai.LLM`)
 - **Apify Actors Tool** (`crewai_tools`)
 - **Google Gemini 2.5 Pro** (configurable a Anthropic Claude)
 - `python-dotenv` para gestión de secretos
+
+> **Sobre los extras de `requirements.txt`:** CrewAI publica los providers de LLM y la
+> integración de Apify como *extras* opcionales, no como dependencias base. Por eso el
+> fichero pide `crewai[google-genai,anthropic]` y `crewai-tools[apify]`: sin ellos la
+> instalación parece correcta pero el script falla al arrancar con un `ImportError`
+> pidiendo `langchain-apify` o el provider nativo correspondiente.
 
 ## Requisitos
 

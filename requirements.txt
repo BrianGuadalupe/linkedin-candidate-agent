@@ -1,4 +1,11 @@
-crewai
-crewai-tools
+# Provider LLM nativo de CrewAI. El extra necesario depende de LLM_PROVIDER
+# en linkedin_agent.py:  "gemini" -> google-genai  |  "claude" -> anthropic.
+# Se incluyen ambos para poder cambiar de proveedor sin reinstalar nada.
+crewai[google-genai,anthropic]
+
+# ApifyActorsTool es un wrapper de langchain-apify. Sin el extra [apify] el
+# import falla en ejecución con "Could not import langchain_apify".
+crewai-tools[apify]
+
 pydantic
 python-dotenv
